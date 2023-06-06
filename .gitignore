@@ -1,0 +1,109 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# CMake compiled
+cmake-build-debug
+
+
+# Clion
+/.idea
+
+
+# Java Server files
+KongJrServer/.gradle
+KongJrServer/.idea
+KongJrServer/build
+
+
+
+## Java
+KongJrServer/build/
+KongJrServer/!gradle/wrapper/gradle-wrapper.jar
+KongJrServer/!**/src/main/**/build/
+KongJrServer/!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+KongJrServer/.idea/modules.xml
+KongJrServer/.idea/jarRepositories.xml
+KongJrServer/.idea/compiler.xml
+KongJrServer/.idea/libraries/
+*.iws
+*.iml
+*.ipr
+out/
+
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
