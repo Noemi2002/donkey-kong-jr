@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="KongJrServer">
+    <output-path>$PROJECT_DIR$/out/artifacts/KongJrServer</output-path>
+    <root id="archive" name="KongJrServer.jar">
+      <element id="module-output" name="server.main" />
+    </root>
+  </artifact>
+</component>
