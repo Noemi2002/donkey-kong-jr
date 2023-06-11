@@ -1,14 +1,6 @@
 #include <stdio.h>
 #include <winsock2.h>
 
-// Initialize Winsock
-WSADATA wsaData;
-
-// Set up the server address
-struct sockaddr_in serverAddress;
-
-// Create a socket for connecting to the server
-SOCKET client_socket = INVALID_SOCKET;
 
 int configure_client_socket(struct WSAData data, struct sockaddr_in server_address) {
     if (WSAStartup(MAKEWORD(2, 2), &data) != 0) {
