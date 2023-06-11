@@ -3,7 +3,7 @@ project(client C)
 
 set(CMAKE_C_STANDARD 23)
 
-set(SOURCES src/main.c src/client.c include/client.h )
+set(SOURCES src/main.c src/client.c include/client.h src/client.h)
 
 add_executable(Client ${SOURCES})
 
