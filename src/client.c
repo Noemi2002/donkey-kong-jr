@@ -2,7 +2,7 @@
 #include <winsock2.h>
 
 
-int configure_client_socket(struct WSAData data, struct sockaddr_in server_address) {
+int configure_client_socket(struct WSAData data, struct sockaddr_in server_address, SOCKET client_socket) {
     if (WSAStartup(MAKEWORD(2, 2), &data) != 0) {
         printf("Failed to initialize Winsock.\n");
         return 1;
