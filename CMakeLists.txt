@@ -10,4 +10,4 @@ set(SOURCES src/main.c src/client.c include/client.h src/client.h)
 add_executable(Client ${SOURCES})
 
 # Link with the Winsock library (ws2_32)
-target_link_libraries(Client ${SDL2_LIBRARIES} ws2_32 SDL2main SDL2  -lSDL2 -lSDL2main -Wall -mwindows -lmingw32 -lSDL2main -lSDL2)
+target_link_libraries(Client ${SDL2_LIBRARIES} ws2_32 -lSDL2 -lSDL2main -Wall -mwindows)
