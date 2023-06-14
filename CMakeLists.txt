@@ -9,7 +9,7 @@ find_package(SDL2_ttf CONFIG REQUIRED)
 find_package(SDL2_image CONFIG REQUIRED)
 
 # Define the source files
-set(SOURCES src/main.c src/client.c include/client.h src/client.h)
+set(SOURCES src/main.c src/client.c include/client.h include/client.h)
 
 
 # Create the executable
