@@ -57,6 +57,7 @@ int get_server_response(SOCKET client_socket, char server_response[1024]) {
 }
 
 int close_socket(SOCKET client_socket) {
+    printf("Closing socket.\n");
     closesocket(client_socket);
     WSACleanup();
     return 0;
