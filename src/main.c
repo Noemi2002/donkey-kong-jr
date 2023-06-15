@@ -3,6 +3,7 @@
 #define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include "../include/utils.h"
 
 
 const int SCREEN_WIDTH = 640;
@@ -35,8 +36,10 @@ int main(int argc, char* args[]) {
         return 1;
     }
 
-    // Load a font
-    TTF_Font* font = TTF_OpenFont("D:\\Development\\Game Development\\KongJr\\assets\\fonts\\Minecraft.ttf", 2000);
+    const char* filename = "../assets/fonts/Minecraft.ttf";
+    char* file_path = search_file_in_current_path(filename);
+
+    TTF_Font* font = TTF_OpenFont(file_path, 2000);
     if (font == NULL) {
         printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
         return 1;
