@@ -4,12 +4,33 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include "../include/utils.h"
+#include "../include/client.h"
 
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 int main(int argc, char* args[]) {
+    struct WSAData data;
+    struct sockaddr_in server_address;
+    SOCKET client_socket;
+
+    if (configure_client_socket(data, server_address, &client_socket) != 0) {
+        return 1;
+    }
+
+    if (send_message_to_server(client_socket, "Hello from client!") != 0) {
+        close_socket(client_socket);
+        return 1;
+    }
+
+    char server_response[1024];
+    if (get_server_response(client_socket, server_response) != 0) {
+        close_socket(client_socket);
+        return 1;
+    }
+
+
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -17,7 +38,7 @@ int main(int argc, char* args[]) {
     }
 
     // Create a window
-    SDL_Window* window = SDL_CreateWindow("SDL Hello World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("SDL Hello World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (window == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         return 1;
