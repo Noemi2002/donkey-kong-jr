@@ -141,5 +141,7 @@ int main(int argc, char* args[]) {
     SDL_DestroyWindow(window);
     SDL_Quit();
 
+    // Close the client thread handle
+    CloseHandle(clientThreadHandle);
     return 0;
 }
