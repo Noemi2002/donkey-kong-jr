@@ -34,13 +34,23 @@ int configure_client_socket(struct WSAData data, struct sockaddr_in server_addre
 }
 
 int send_message_to_server(SOCKET client_socket, const char* message) {
-    int result = send(client_socket, message, strlen(message), 0);
+    char message_with_newline[1024];
+    snprintf(message_with_newline, sizeof(message_with_newline), "%s\n", message);
+
+    int result = send(client_socket, message_with_newline, strlen(message_with_newline), 0);
     if (result == SOCKET_ERROR) {
         printf("Failed to send data to the server.\n");
         return 1;
     }
 
     printf("Successfully sent message to server.\n");
+    return 0;
+}
+
+
+int close_socket(SOCKET client_socket) {
+    closesocket(client_socket);
+    WSACleanup();
     return 0;
 }
 
@@ -53,11 +63,16 @@ int get_server_response(SOCKET client_socket, char server_response[1024]) {
 
     server_response[result] = '\0'; // Null-terminate the received data
     printf("Server response: %s\n", server_response);
+
+    if (get_server_response(client_socket, server_response) != 0) {
+        close_socket(client_socket);
+        return 1;
+    }
+
+// Cerrar la conexión después de recibir la respuesta
+    close_socket(client_socket);
+
     return 0;
 }
 
-int close_socket(SOCKET client_socket) {
-    closesocket(client_socket);
-    WSACleanup();
-    return 0;
-}
+

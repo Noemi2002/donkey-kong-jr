@@ -24,25 +24,34 @@ public class Server {
     }
 
     public void acceptClientConnections() throws IOException {
-        clientSocket =  this.serverSocket.accept();
+        while (true) {
+            clientSocket = this.serverSocket.accept();
 
-        out.println("Client connected: " + clientSocket.getInetAddress());
+            System.out.println("Client connected: " + clientSocket.getInetAddress());
 
-        // Create input and output streams for the client socket
-        var input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        var output = new PrintWriter(clientSocket.getOutputStream(), true);
+            // Create input and output streams for the client socket
+            var input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            var output = new PrintWriter(clientSocket.getOutputStream(), true);
 
-        // Receive data from the client
-        var clientMessage = input.readLine();
-        out.println("Received from client: " + clientMessage);
+            // Read messages from the client
+            String clientMessage;
+            while ((clientMessage = input.readLine()) != null) {
+                System.out.println("Received from client: " + clientMessage);
 
-        // Send response to the client
-        var responseMessage = "Hello, client!";
-        output.println(responseMessage);
-        out.println("Sent to client: " + responseMessage);
+                // Process the client message
+                // ...
 
-        output.close();
-        input.close();
+                // Send response to the client
+                String responseMessage = "Hello, client!";
+                output.println(responseMessage);
+                System.out.println("Sent to client: " + responseMessage);
+            }
+
+            // Close the resources for this client
+            input.close();
+            output.close();
+            clientSocket.close();
+        }
     }
 
     public void closeSocket() throws IOException {
