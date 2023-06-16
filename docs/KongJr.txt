@@ -1,0 +1,73 @@
+JUGADOR 1-> 093845 ACTION <LEFT-ARROW X: 12 ,Y: 13>
+
+{
+	PLAYERS: [
+		PLAYER_1: {
+			X: 
+			Y: 
+			SCORE:
+					
+		}, 
+		PLAYER_2: {
+			X: 
+			Y: 
+			SCORE: 
+		} 
+	]
+}
+
+
+SERVER -> RESPONSE: True
+
+ESPECTATOR -> 093845 ACTION <X: 12, Y: 13> 
+
+
+1. Configurar SDL con Cmake en 	Windows*
+2. Empezar el client con funcionalidad base
+	- Mapa
+		- Matrix 600x600 / square (15ax15 or 30x30) -> tile_size = 20px; 
+	- Movimiento
+	- Jugador 1
+	- Multiplayer
+	- Enemigos -> Admin
+	- Espectators
+	
+3. Server
+	2.1 - Definir un protocolo de comunicación
+	2.2 - Parsear mensajes del client y devolver un respose
+	2.3 - Dibujar Jugador 2
+	2.4. Aceptar un admin que controle los enemigos. CONNECTION_ID <ACTION> <VALUES>
+							 000001 ENEMY_RED <X: Y: > 
+
+	2.5 Generate random fruit with a random timer
+
+
+4. Launcher -> Powershell
+	- Jugador
+	- Admin
+	- Espectator
+
+	- Run the server
+
+
+
+00000000000000000000 - 1
+00000000000000000000 - 2 
+00000000000000000000 - 3
+00000000000000000000 - 4
+=========00000000000 - 5
+000000000======00000 6
+0*00*0000*0000000000 7
+0*00*000010000000000 8
+0*00*0000*0000000000 9 
+0*00*0000*0000000000 10 
+0*00*0000*0000000000 11
+0*00*0000*0000000000 12
+0*00*0000*0000000000 13
+====0000000000000000 14
+0*00*0000*0000000000
+0*00*0000*0000000000
+0*00*0000*0000000000
+0*00*0000*0000000000
+0*00*0000*0000000000
+0*00*0000*0000000000
