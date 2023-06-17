@@ -1,32 +1,27 @@
 package org.kongjr.fruits;
 
-//Van a haber diferentes tipos de frutas?
-//En ese caso cada fruta requiere su clase y esta que es general debería ser abstract
-//Cada fruta tiene su puntaje
-
-public class Fruit {
-    private String liana;
+public abstract class Fruit {
+    private int liana;
     private int height;
     private int points;
 
-    public Fruit(String liana, int height, int points) {
+    public Fruit(int liana, int height, int points) {
         this.liana = liana;
         this.height = height;
         this.points = points;
     }
 
-    public void createFruit(String liana, int height){
-        System.out.println("A new fruit is created");
+    public int getLiana() {
+        return liana;
     }
 
-    public void deleteFruit(String liana, int height) {
-        //pass
+    public int getHeight() {
+        return height;
     }
 
     public int getPoints() {
-        return this.points;
+        return points;
     }
 
-
+    public abstract void printInfo();
 }
-
