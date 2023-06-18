@@ -9,7 +9,7 @@ $form.MaximizeBox = $false
 
 # Create a button
 $button = New-Object System.Windows.Forms.Button
-$button.Text = "Run Commands"
+$button.Text = "Start Game"
 $button.Location = New-Object System.Drawing.Point(150, 80)
 $button.Size = New-Object System.Drawing.Size(100, 30)
 $button.Add_Click({
