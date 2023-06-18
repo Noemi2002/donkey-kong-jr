@@ -1,34 +1,29 @@
-Add-Type -assembly System.Windows.Forms
+Add-Type -AssemblyName System.Windows.Forms
 
-$main_form = New-Object System.Windows.Forms.Form
-$main_form.Text ='KongJr Launcher'
+# Create a new form
+$form = New-Object System.Windows.Forms.Form
+$form.Text = "Donkey Kong Jr Launcher"
+$form.Size = New-Object System.Drawing.Size(400, 200)
+$form.FormBorderStyle = "FixedSingle"
+$form.MaximizeBox = $false
 
-$main_form.Width = 600
-$main_form.Height = 400
+# Create a button
+$button = New-Object System.Windows.Forms.Button
+$button.Text = "Run Commands"
+$button.Location = New-Object System.Drawing.Point(150, 80)
+$button.Size = New-Object System.Drawing.Size(100, 30)
+$button.Add_Click({
+    # Specify the paths to the files
+    $serverJarPath = "server/out/artifacts/KongJrServer/KongJrServer.jar"
+    $clientExePath = "cmake-build-debug/Client.exe"
 
+    # Execute the commands
+    Start-Process -FilePath "java" -ArgumentList "-jar $serverJarPath"
+    Start-Process -FilePath $clientExePath
+})
 
-$Label = New-Object System.Windows.Forms.Label
-$Label.Text = "KongJr Launcher"
-$Label.Location  = New-Object System.Drawing.Point(0,10)
-$Label.AutoSize = $true
-$main_form.Controls.Add($Label)
+# Add the button to the form
+$form.Controls.Add($button)
 
-# Run the java executable from 
-
-
-
-# Run the command  .\cmake-build-debug\Client.exe
-$Button = New-Object System.Windows.Forms.Button
-$Button.Text = "Run"
-
-$Button.Location = New-Object System.Drawing.Point(0, 50)
-
-$Button.Add_Click({& .\cmake-build-debug\Client.exe})
-
-
-
-# Add UI Element to the root form
-$main_form.Controls.Add($Button)
-
-# Run the window main loop
-$main_form.ShowDialog()
+# Show the form
+$form.ShowDialog()
