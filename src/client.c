@@ -54,6 +54,7 @@ int close_socket(SOCKET client_socket) {
     return 0;
 }
 
+
 int get_server_response(SOCKET client_socket, char server_response[1024]) {
     int result = recv(client_socket, server_response, 1024, 0);
     if (result == SOCKET_ERROR) {
@@ -69,7 +70,7 @@ int get_server_response(SOCKET client_socket, char server_response[1024]) {
         return 1;
     }
 
-// Cerrar la conexión después de recibir la respuesta
+    // Close the connection after receiving the response
     close_socket(client_socket);
 
     return 0;
