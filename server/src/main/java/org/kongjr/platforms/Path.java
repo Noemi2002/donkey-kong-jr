@@ -1,24 +1,22 @@
 package org.kongjr.platforms;
+import org.kongjr.crocodiles.Crocodile;
+import org.kongjr.estructuras.*;
 
-public class Path {
-    private int InitialPos;
-    private int FinalPos;
+public class Path extends Platforms {
 
-    public Path(int InitialPos, int FinalPos) {
-        this.InitialPos = InitialPos;
-        this.FinalPos = FinalPos;
+    private MyLinkedList<Crocodile> enemies;
+
+    public Path(String name, int initialPos, int finalPos) {
+        super(name, initialPos, finalPos);
+        this.enemies = new MyLinkedList<>();
     }
 
-    public int getInitialPos() {
-        return InitialPos;
+    public void addCrocodile(Crocodile crocodile) {
+        enemies.insert(crocodile);
     }
 
-    public int getFinalPos() {
-        return FinalPos;
-    }
-
-    public boolean validPath(int position) {
-        return position >= InitialPos && position <= FinalPos;
+    public void removeCrocodile(Crocodile crocodile) {
+        enemies.delete(crocodile);
     }
 
     /*public void moverPersonaje(Personaje personaje, int nuevaPosicion) {

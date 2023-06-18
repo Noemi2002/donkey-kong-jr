@@ -1,4 +1,4 @@
-package org.kongjr.lista;
+package org.kongjr.estructuras;
 
 class Node<T> {
     T value;
