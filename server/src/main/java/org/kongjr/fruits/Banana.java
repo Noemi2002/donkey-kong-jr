@@ -9,4 +9,9 @@ public class Banana extends Fruit {
     public void printInfo() {
         System.out.println("Banana en liana " + getLiana() + ", altura " + getHeight());
     }
+
+    @Override
+    public int setPoint() {
+        return 0;
+    }
 }

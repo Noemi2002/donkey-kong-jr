@@ -7,21 +7,16 @@ public class RedCrocodile extends Crocodile{
 
     @Override
     public void movement() {
-        System.out.println("Me muevo de forma vertical, sin caer");
+        System.out.println("Me muevo en forma vertical y no caigo, si no que subo y bajo");
     }
 
     @Override
-    public int speed(){
-        return 1;
+    protected int getInitialSpeed() {
+        return 5; //Velocidad origial del cocodrilo azul
     }
 
-    public int speedLevel(int level){
-        if (level == 1){
-            return speed();
-        }
-        else{ return (level + 2);}
-    }
 }
+
 
 
 

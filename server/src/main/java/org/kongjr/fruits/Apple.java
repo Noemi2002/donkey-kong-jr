@@ -9,4 +9,9 @@ public class Apple extends Fruit {
     public void printInfo() {
         System.out.println("Manzana en liana " + getLiana() + ", altura " + getHeight());
     }
+
+    @Override
+    public int setPoint() {
+        return 0;
+    }
 }

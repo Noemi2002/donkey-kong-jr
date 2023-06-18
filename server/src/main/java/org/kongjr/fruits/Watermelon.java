@@ -9,4 +9,9 @@ public class Watermelon extends Fruit {
     public void printInfo() {
         System.out.println("Sandía en liana " + getLiana() + ", altura " + getHeight());
     }
+
+    @Override
+    public int setPoint() {
+        return 0;
+    }
 }

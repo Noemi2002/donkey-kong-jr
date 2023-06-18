@@ -24,4 +24,5 @@ public abstract class Fruit {
     }
 
     public abstract void printInfo();
+    public abstract int setPoint();
 }
