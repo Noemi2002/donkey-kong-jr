@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <windows.h>
 
 #define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
@@ -10,7 +11,9 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-int main(int argc, char* args[]) {
+
+// Define a function that will be executed in a separate thread
+DWORD WINAPI client_thread_function(LPVOID lpParam) {
     struct WSAData data;
     struct sockaddr_in server_address;
     SOCKET client_socket;
@@ -30,6 +33,30 @@ int main(int argc, char* args[]) {
         return 1;
     }
 
+    if(send_message_to_server(client_socket, "Hello again from client!") != 0) {
+        close_socket(client_socket);
+        return 1;
+    }
+
+    close_socket(client_socket);
+    return 0;
+}
+
+
+int main(int argc, char* args[]) {
+    HANDLE clientThreadHandle;
+
+    clientThreadHandle = CreateThread(NULL, 0, client_thread_function, NULL, 0, NULL);
+    if (clientThreadHandle == NULL) {
+        printf("Failed to create thread\n");
+        return 1;
+    }
+
+    // The main thread continues its execution
+    printf("Main thread is running\n");
+
+    // Wait for the thread to finish (optional)
+    WaitForSingleObject(clientThreadHandle, INFINITE);
 
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -38,7 +65,12 @@ int main(int argc, char* args[]) {
     }
 
     // Create a window
-    SDL_Window* window = SDL_CreateWindow("SDL Hello World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("DonkeyKong Jr",
+                                          SDL_WINDOWPOS_UNDEFINED,
+                                          SDL_WINDOWPOS_UNDEFINED,
+                                          SCREEN_WIDTH,
+                                          SCREEN_HEIGHT,
+                                          SDL_WINDOW_SHOWN);
     if (window == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         return 1;
@@ -109,5 +141,7 @@ int main(int argc, char* args[]) {
     SDL_DestroyWindow(window);
     SDL_Quit();
 
+    // Close the client thread handle
+    CloseHandle(clientThreadHandle);
     return 0;
 }
