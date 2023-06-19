@@ -28,17 +28,13 @@ function Get-ScriptExecutionPath {
 # Example usage
 $currentPath = Get-ScriptExecutionPath
 
+# Button runs the command ./cmake-build-debug/Client.exe when clicked and java -jar $currentPathserver/out/artifacts/KongJrServer/KongJrServer.jar
+
 $Button.Add_Click({
-    # Specify the paths to the files
-    $serverJarPath = $currentPath.ToString() + "/server/out/artifacts/KongJrServer/KongJrServer.jar"
-    $clientExePath = $currentPath.ToString() + "/cmake-build-debug/Client.exe"
-
-    Write-Host "Concatenated path: $clientExePath"
-
-    # Execute the commands
-    Start-Process -FilePath "java" -ArgumentList "-jar $serverJarPath"
-    Start-Process -FilePath $clientExePath
+    Start-Process -FilePath "java" -ArgumentList "-jar", "$currentPath/server/out/artifacts/KongJrServer/KongJrServer.jar"
+    Start-Process -FilePath "$currentPath/cmake-build-debug/Client.exe"
 })
+
 
 # Add UI Element to the root form
 $main_form.Controls.Add($Button)
