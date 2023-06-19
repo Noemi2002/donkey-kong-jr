@@ -50,3 +50,7 @@ char* search_file_in_current_path(const char* filename) {
 
     return file_path;
 }
+
+
+const char* filename = "../assets/fonts/Minecraft.ttf";
+//char* file_path = search_file_in_current_path(filename);
