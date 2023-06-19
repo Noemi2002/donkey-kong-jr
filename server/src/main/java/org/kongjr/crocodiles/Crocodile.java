@@ -5,15 +5,15 @@ import org.kongjr.estructuras.ParOrdenado;
 public abstract class Crocodile {
     private String color;
     private String liana;
-    private ParOrdenado currentPosition;
+    private int currentPosition;
 
-    public Crocodile(String color, String liana, int initialPosX, int initialPosY) {
+    public Crocodile(String color, String liana, int initialPosY) {
         this.color = color;
         this.liana = liana;
-        this.currentPosition = new ParOrdenado(initialPosX, initialPosY);
+        this.currentPosition = initialPosY;
     }
 
-    public ParOrdenado getCurrentPosition() {
+    public int getCurrentPosition() {
         return currentPosition;
     }
 

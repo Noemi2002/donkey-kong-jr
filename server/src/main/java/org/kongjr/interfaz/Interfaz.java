@@ -2,22 +2,13 @@ package org.kongjr.interfaz;
 
 import org.kongjr.crocodiles.BlueCrocodile;
 import org.kongjr.crocodiles.Crocodile;
-import org.kongjr.crocodiles.CrocodileFactory;
 import org.kongjr.crocodiles.RedCrocodile;
-import org.kongjr.estructuras.ParOrdenado;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Interfaz {
-    private static CrocodileFactory crocodileFactory = new CrocodileFactory() {
-    };
-
     public static void main(String[] args) {
         JFrame frame = new JFrame("Crocodiles and Fruits");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,7 +20,7 @@ public class Interfaz {
         blue.setBounds(30, 20, 150, 40);
         blue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                showDialogAndCreateCrocodile("blue");
+                showCrocodileDialog("blue");
             }
         });
 
@@ -37,7 +28,7 @@ public class Interfaz {
         red.setBounds(30, 70, 150, 40);
         red.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                showDialogAndCreateCrocodile("red");
+                showCrocodileDialog("red");
             }
         });
 
@@ -79,12 +70,57 @@ public class Interfaz {
         frame.setVisible(true);
     }
 
-    private static void showDialogAndCreateCrocodile(String color) {
-        String liana = JOptionPane.showInputDialog("Enter the liana name:");
-        int height = Integer.parseInt(JOptionPane.showInputDialog("Enter the height:"));
+    private static void showCrocodileDialog(String color) {
+        JFrame dialog = new JFrame("Create Crocodile");
+        dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Crear el cocodrilo utilizando el CrocodileFactory
-        Crocodile crocodile = crocodileFactory.createCrocodile(color, liana, height);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        JLabel colorLabel = new JLabel("Color: " + color);
+        panel.add(colorLabel);
+
+        JLabel lianaLabel = new JLabel("Liana:");
+        JTextField lianaField = new JTextField(10);
+        panel.add(lianaLabel);
+        panel.add(lianaField);
+
+        JLabel heightLabel = new JLabel("Height:");
+        JTextField heightField = new JTextField(10);
+        panel.add(heightLabel);
+        panel.add(heightField);
+
+        JButton createButton = new JButton("Create");
+        createButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String liana = lianaField.getText();
+                int height = Integer.parseInt(heightField.getText());
+
+                createCrocodile(color, liana, height);
+
+                dialog.dispose();
+            }
+        });
+        panel.add(createButton);
+
+        dialog.getContentPane().add(panel);
+        dialog.setSize(200, 200);
+        dialog.setVisible(true);
+    }
+
+    //Usar esta función para enviar la información al cliente
+    private static void createCrocodile(String color, String liana, int height) {
+        // Código para crear un nuevo cocodrilo
+        Crocodile crocodile;
+
+        if (color.equals("blue")) {
+            crocodile = new BlueCrocodile("blue",liana, height);
+        } else if (color.equals("red")) {
+            crocodile = new RedCrocodile( "red",liana, height);
+        } else {
+            // Color inválido
+            return;
+        }
 
         // Enviar el cocodrilo al servidor
         // Aquí debes agregar el código para enviar el objeto 'crocodile' al servidor
