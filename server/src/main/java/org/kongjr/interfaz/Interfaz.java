@@ -1,5 +1,6 @@
 package org.kongjr.interfaz;
 
+//Imports necesarios
 import org.kongjr.crocodiles.BlueCrocodile;
 import org.kongjr.crocodiles.Crocodile;
 import org.kongjr.crocodiles.RedCrocodile;
@@ -7,12 +8,16 @@ import org.kongjr.fruits.Apple;
 import org.kongjr.fruits.Banana;
 import org.kongjr.fruits.Fruit;
 import org.kongjr.fruits.Watermelon;
+import org.kongjr.estructuras.MyArrayList;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 public class Interfaz {
+
+    //ventana
     public static void main(String[] args) {
         JFrame frame = new JFrame("Crocodiles and Fruits");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,6 +25,8 @@ public class Interfaz {
         JPanel panel = new JPanel();
         panel.setBounds(40, 70, 200, 200);
 
+
+        //Botones para crear cocodrilos
         JButton blue = new JButton("New Blue Crocodile");
         blue.setBounds(30, 20, 150, 40);
         blue.addActionListener(new ActionListener() {
@@ -36,6 +43,7 @@ public class Interfaz {
             }
         });
 
+        //Botones para crear frutas
         JButton apple = new JButton("New Apple");
         apple.setBounds(30, 120, 150, 40);
         apple.addActionListener(new ActionListener() {
@@ -60,6 +68,7 @@ public class Interfaz {
             }
         });
 
+
         frame.setLayout(null);
         frame.getContentPane().add(blue);
         frame.getContentPane().add(red);
@@ -71,6 +80,7 @@ public class Interfaz {
         frame.setVisible(true);
     }
 
+    //Para definir la liana y la posición de los cocodrilos
     private static void showCrocodileDialog(String color) {
         JFrame dialog = new JFrame("Create Crocodile");
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -119,13 +129,14 @@ public class Interfaz {
         dialog.setVisible(true);
     }
 
-    //Usar esta función para enviar la información al cliente
+    //Crea la instancia de los cocodrilos
     private static void createCrocodile(String color, String liana, int height) {
         // Código para crear un nuevo cocodrilo
         Crocodile crocodile;
 
         if (color.equals("blue")) {
             crocodile = new BlueCrocodile("blue",liana, height);
+
         } else if (color.equals("red")) {
             crocodile = new RedCrocodile( "red",liana, height);
         } else {
@@ -133,14 +144,14 @@ public class Interfaz {
             return;
         }
 
-        // Enviar el cocodrilo al servidor
-        // Aquí debes agregar el código para enviar el objeto 'crocodile' al servidor
+
 
         System.out.println("Creating a new " + color + " crocodile...");
         System.out.println("Liana: " + liana);
         System.out.println("Height: " + height);
     }
 
+    //Para definir la liana y la posición de las frutas
     private static void showFruitDialog(String fruitName) {
         JFrame dialog = new JFrame("Create Fruit");
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -189,6 +200,7 @@ public class Interfaz {
         dialog.setVisible(true);
     }
 
+    //Crea las instancias de las frutas
     private static void createFruit(String fruitName, String liana, int height) {
         // Código para crear una nueva fruta
         Fruit fruit;
@@ -204,18 +216,19 @@ public class Interfaz {
             return;
         }
 
-        // Enviar la fruta al servidor
-        // Aquí debes agregar el código para enviar el objeto 'fruit' al servidor
 
         System.out.println("Creating a new " + fruitName + "...");
         System.out.println("Liana: " + liana);
         System.out.println("Height: " + height);
     }
 
+
+    //Validas las lianas
     private static boolean isValidLiana(String liana) {
         return liana.matches("L[1-6]");
     }
 
+    //Valida la altura
     private static boolean isValidHeight(int height) {
         return height > 0;
     }
