@@ -50,7 +50,10 @@ public class Server {
             // Close the resources for this client
             input.close();
             output.close();
+
+            clientSocket.close();
             closeSocket();
+
         }
     }
 

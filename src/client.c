@@ -23,5 +23,6 @@ TCPsocket open_client_socket() {
         SDL_Quit();
     }
 
+    printf("Game connected to server.\n");
     return clientSocket;
 }
