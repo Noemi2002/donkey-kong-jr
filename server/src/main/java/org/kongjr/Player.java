@@ -75,5 +75,10 @@ public class Player {
     public void moveRight() {
             posX++;
         }
+
+
+    public void crocColision(){
+
+    }
 }
 

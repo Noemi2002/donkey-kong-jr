@@ -1,10 +1,23 @@
 package org.kongjr.interfaz;
 
+import org.kongjr.crocodiles.BlueCrocodile;
+import org.kongjr.crocodiles.Crocodile;
+import org.kongjr.crocodiles.CrocodileFactory;
+import org.kongjr.crocodiles.RedCrocodile;
+import org.kongjr.estructuras.ParOrdenado;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Interfaz {
+    private static CrocodileFactory crocodileFactory = new CrocodileFactory() {
+    };
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Crocodiles and Fruits");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -16,8 +29,7 @@ public class Interfaz {
         blue.setBounds(30, 20, 150, 40);
         blue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Código para crear un nuevo cocodrilo azul
-                System.out.println("Creating a new blue crocodile...");
+                showDialogAndCreateCrocodile("blue");
             }
         });
 
@@ -25,8 +37,7 @@ public class Interfaz {
         red.setBounds(30, 70, 150, 40);
         red.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Código para crear un nuevo cocodrilo rojo
-                System.out.println("Creating a new red crocodile...");
+                showDialogAndCreateCrocodile("red");
             }
         });
 
@@ -66,5 +77,20 @@ public class Interfaz {
         frame.getContentPane().add(panel);
         frame.setSize(400, 400);
         frame.setVisible(true);
+    }
+
+    private static void showDialogAndCreateCrocodile(String color) {
+        String liana = JOptionPane.showInputDialog("Enter the liana name:");
+        int height = Integer.parseInt(JOptionPane.showInputDialog("Enter the height:"));
+
+        // Crear el cocodrilo utilizando el CrocodileFactory
+        Crocodile crocodile = crocodileFactory.createCrocodile(color, liana, height);
+
+        // Enviar el cocodrilo al servidor
+        // Aquí debes agregar el código para enviar el objeto 'crocodile' al servidor
+
+        System.out.println("Creating a new " + color + " crocodile...");
+        System.out.println("Liana: " + liana);
+        System.out.println("Height: " + height);
     }
 }

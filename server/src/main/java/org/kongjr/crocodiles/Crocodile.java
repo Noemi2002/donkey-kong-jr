@@ -3,41 +3,25 @@ package org.kongjr.crocodiles;
 import org.kongjr.estructuras.ParOrdenado;
 
 public abstract class Crocodile {
+    private String color;
     private String liana;
-    private int initialPosX;
-    private int initialPosY;
-    private int currentPosition;;
+    private ParOrdenado currentPosition;
 
-    public Crocodile(String liana, int initialPosX, int initialPosY) {
+    public Crocodile(String color, String liana, int initialPosX, int initialPosY) {
+        this.color = color;
         this.liana = liana;
-        this.initialPosX = initialPosX;
-        this.initialPosY = initialPosY;
+        this.currentPosition = new ParOrdenado(initialPosX, initialPosY);
     }
 
-    public abstract void movement();
-    public final int speed() {
-        int pos = 5; //Valor que se cambia por la posición del jugador cuando se da el cambio de nivel
-        int level = currentLevel(pos);
-        int baseSpeed = getInitialSpeed();
-        return newSpeed(level, baseSpeed);
+    public ParOrdenado getCurrentPosition() {
+        return currentPosition;
     }
 
-    public ParOrdenado getInitialPos(){
-        return new ParOrdenado(initialPosX, initialPosY);
+    public String getLiana() {
+        return liana;
     }
 
-
-
-    protected abstract int getInitialSpeed();
-    protected abstract int updatePos();
-
-    protected int newSpeed(int level, int baseSpeed) {
-        return baseSpeed + (level * 2);
+    public String getColor() {
+        return color;
     }
-
-    protected int currentLevel(int playerPosition) {
-        // Nivel del jugador
-        return 1; // Nivel por defecto
-    }
-
 }
