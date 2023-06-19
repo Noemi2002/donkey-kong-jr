@@ -1,4 +1,4 @@
-package org.kongjr.estructuras;
+package org.kongjr.datastructures;
 
 public class MyLinkedList<T> {
     Node<T> head;

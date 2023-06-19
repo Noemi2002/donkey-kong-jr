@@ -1,4 +1,4 @@
-package org.kongjr.estructuras;
+package org.kongjr.datastructures;
 
 public class MyArrayList<T> {
     private Object[] elementos;
@@ -20,7 +20,7 @@ public class MyArrayList<T> {
 
     public T obtener(int indice) {
         if (indice < 0 || indice >= tamano) {
-            throw new IndexOutOfBoundsException("Índice fuera de rango");
+            throw new IndexOutOfBoundsException("Index out of range");
         }
         return (T) elementos[indice];
     }

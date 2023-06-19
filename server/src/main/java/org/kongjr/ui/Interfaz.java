@@ -1,4 +1,4 @@
-package org.kongjr.interfaz;
+package org.kongjr.ui;
 
 //Imports necesarios
 import org.kongjr.crocodiles.BlueCrocodile;
@@ -8,12 +8,10 @@ import org.kongjr.fruits.Apple;
 import org.kongjr.fruits.Banana;
 import org.kongjr.fruits.Fruit;
 import org.kongjr.fruits.Watermelon;
-import org.kongjr.estructuras.MyArrayList;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 
 public class Interfaz {
 

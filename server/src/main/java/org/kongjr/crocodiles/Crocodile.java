@@ -1,7 +1,5 @@
 package org.kongjr.crocodiles;
 
-import org.kongjr.estructuras.ParOrdenado;
-
 public abstract class Crocodile {
     private String color;
     private String liana;

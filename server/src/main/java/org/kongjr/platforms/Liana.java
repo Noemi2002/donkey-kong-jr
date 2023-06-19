@@ -1,7 +1,7 @@
 package org.kongjr.platforms;
 import org.kongjr.crocodiles.*;
 import org.kongjr.fruits.*;
-import org.kongjr.estructuras.*;
+import org.kongjr.datastructures.*;
 
 
 //Se nombran las lianas como L1, L2, ...

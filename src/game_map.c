@@ -54,7 +54,7 @@ void renderGameMap(GameMap* gameMap, SDL_Renderer* renderer) {
     SDL_RenderClear(renderer);
 
     // Load the textures
-    SDL_Texture* grassTexture = loadTexture(renderer, "../assets/textures/grass.png");\
+    SDL_Texture* grassTexture = loadTexture(renderer, "../assets/textures/grass.png");
     SDL_Texture* platformTexture = loadTexture(renderer, "../assets/textures/platform.png");
     SDL_Texture* waterTexture = loadTexture(renderer, "../assets/textures/water.png");
 
@@ -120,8 +120,6 @@ void drawGrid(SDL_Renderer* renderer)
     rect.w = GRID_SIZE;
     rect.h = GRID_SIZE;
 
-    SDL_Texture* waterTexture = loadTexture(renderer, "../assets/textures/water.png");
-
 
     for (int row = 0; row < 20; row++) {
         for (int col = 0; col < 30; col++) {
@@ -129,7 +127,6 @@ void drawGrid(SDL_Renderer* renderer)
             rect.y = row * GRID_SIZE;
 
             if (grid[row][col] == 9) {
-                SDL_RenderCopy(renderer, waterTexture, NULL, &rect);
                 SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
                 SDL_RenderFillRect(renderer, &rect);
             } else if (grid[row][col] == 1) {

@@ -1,7 +1,7 @@
 package org.kongjr.platforms;
 
 
-import org.kongjr.estructuras.ParOrdenado;
+import org.kongjr.datastructures.ParOrdenado;
 
 public abstract class Platforms {
     private String name;
@@ -11,12 +11,10 @@ public abstract class Platforms {
     private int finalPosY;
 
 
-    public Platforms(String name, int initialPosX, int initialPosY){//, int finalPosX, int finalPosY) {
+    public Platforms(String name, int initialPosX, int initialPosY) {
         this.name = name;
         this.initialPosX = initialPosX;
-        this.finalPosY = finalPosY;
         this.initialPosY = initialPosY;
-        this.finalPosX = finalPosX;
     }
 
     public String getName() {

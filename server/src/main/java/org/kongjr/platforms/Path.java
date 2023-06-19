@@ -1,6 +1,6 @@
 package org.kongjr.platforms;
 import org.kongjr.crocodiles.Crocodile;
-import org.kongjr.estructuras.*;
+import org.kongjr.datastructures.*;
 
 public class Path extends Platforms {
 

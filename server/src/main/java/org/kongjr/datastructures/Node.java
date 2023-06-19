@@ -1,4 +1,4 @@
-package org.kongjr.estructuras;
+package org.kongjr.datastructures;
 
 class Node<T> {
     T value;
