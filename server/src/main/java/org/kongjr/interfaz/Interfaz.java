@@ -97,9 +97,19 @@ public class Interfaz {
                 String liana = lianaField.getText();
                 int height = Integer.parseInt(heightField.getText());
 
-                createCrocodile(color, liana, height);
-
-                dialog.dispose();
+                if (isValidLiana(liana) && isValidHeight(height)) {
+                    createCrocodile(color, liana, height);
+                    dialog.dispose();
+                } else {
+                    String errorMessage = "Invalid input:";
+                    if (!isValidLiana(liana)) {
+                        errorMessage += "\n- Liana must be between L1 and L6.";
+                    }
+                    if (!isValidHeight(height)) {
+                        errorMessage += "\n- Height must be a positive integer.";
+                    }
+                    JOptionPane.showMessageDialog(dialog, errorMessage);
+                }
             }
         });
         panel.add(createButton);
@@ -157,9 +167,19 @@ public class Interfaz {
                 String liana = lianaField.getText();
                 int height = Integer.parseInt(heightField.getText());
 
-                createFruit(fruitName, liana, height);
-
-                dialog.dispose();
+                if (isValidLiana(liana) && isValidHeight(height)) {
+                    createFruit(fruitName, liana, height);
+                    dialog.dispose();
+                } else {
+                    String errorMessage = "Invalid input:";
+                    if (!isValidLiana(liana)) {
+                        errorMessage += "\n- Liana must be between L1 and L6.";
+                    }
+                    if (!isValidHeight(height)) {
+                        errorMessage += "\n- Height must be a positive integer.";
+                    }
+                    JOptionPane.showMessageDialog(dialog, errorMessage);
+                }
             }
         });
         panel.add(createButton);
@@ -190,6 +210,14 @@ public class Interfaz {
         System.out.println("Creating a new " + fruitName + "...");
         System.out.println("Liana: " + liana);
         System.out.println("Height: " + height);
+    }
+
+    private static boolean isValidLiana(String liana) {
+        return liana.matches("L[1-6]");
+    }
+
+    private static boolean isValidHeight(int height) {
+        return height > 0;
     }
 
 }
