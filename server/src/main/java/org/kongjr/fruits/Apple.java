@@ -1,7 +1,7 @@
 package org.kongjr.fruits;
 
 public class Apple extends Fruit {
-    public Apple(int liana, int height) {
+    public Apple(String liana, int height) {
         super(liana, height, 100); // La manzana otorga 10 puntos
     }
 
