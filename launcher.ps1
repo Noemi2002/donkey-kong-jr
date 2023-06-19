@@ -18,7 +18,12 @@ $main_form.Controls.Add($Label)
 $Button = New-Object System.Windows.Forms.Button
 $Button.Text = "Start Game"
 
+$ExpectatorButton = New-Object System.Windows.Forms.Button
+$ExpectatorButton.Text = "Expectate Game"
+
 $Button.Location = New-Object System.Drawing.Point(150, [int]($main_form.Height / 2))
+$ExpectatorButton.Location = New-Object System.Drawing.Point(150, [int]($main_form.Height / 2 + 30))
+
 
 function Get-ScriptExecutionPath {
     $scriptPath = $PSScriptRoot
@@ -29,15 +34,17 @@ function Get-ScriptExecutionPath {
 $currentPath = Get-ScriptExecutionPath
 
 # Button runs the command ./cmake-build-debug/Client.exe when clicked and java -jar $currentPathserver/out/artifacts/KongJrServer/KongJrServer.jar
+Start-Process -FilePath "java" -ArgumentList "-jar", "$currentPath/server/out/artifacts/KongJrServer/KongJrServer.jar"
+
 
 $Button.Add_Click({
-    Start-Process -FilePath "java" -ArgumentList "-jar", "$currentPath/server/out/artifacts/KongJrServer/KongJrServer.jar"
     Start-Process -FilePath "$currentPath/cmake-build-debug/Client.exe"
 })
 
 
 # Add UI Element to the root form
 $main_form.Controls.Add($Button)
+$main_form.Controls.Add($ExpectatorButton)
 
 # Run the window main loop
 $main_form.ShowDialog()
