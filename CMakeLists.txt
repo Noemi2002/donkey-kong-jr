@@ -10,21 +10,13 @@ find_package(SDL2_ttf CONFIG REQUIRED)
 find_package(SDL2_image CONFIG REQUIRED)
 
 # Define the source files
-set(SOURCES src/main.c src/client.c include/client.h
+set(SOURCES src/main.c
+        src/client.c
         include/client.h
         include/utils.h
-        include/utils.h
-        include/game.h
-        include/game.h
-        include/game.h
+        include/game_map.h
         include/globals.h
-        include/globals.h
-        include/map.h
-        src/map.c
-        src/spritesheet.c
-        include/spritesheet.h
-        src/game.c
-        src/game.c
+        src/game_map.c
         src/player.c
         include/player.h)
 
@@ -32,6 +24,7 @@ set(SOURCES src/main.c src/client.c include/client.h
 
 # Create the executable
 add_executable(Client ${SOURCES})
+
 # Link with the required libraries
 target_link_libraries(Client PRIVATE
         ws2_32
