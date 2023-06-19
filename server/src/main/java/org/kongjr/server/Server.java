@@ -1,5 +1,6 @@
 package org.kongjr.server;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,6 +44,7 @@ public class Server {
 
                 // Send response to the client
                 String responseMessage = "Hello, client!";
+                //String responseMessage = sendObject();
                 output.println(responseMessage);
                 System.out.println("Sent to client: " + responseMessage);
             }
@@ -50,7 +52,17 @@ public class Server {
             // Close the resources for this client
             input.close();
             output.close();
-            closeSocket();
+            clientSocket.close();
+        }
+    }
+
+    public void sendObject(String string){
+        try{
+            PrintWriter output = new PrintWriter(clientSocket.getOutputStream(),true);
+            output.println(string);
+            System.out.println("Sent to client: " + string);
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
 

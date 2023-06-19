@@ -5,29 +5,11 @@ set(CMAKE_C_STANDARD 23)
 
 # Find the SDL2 package
 find_package(SDL2 CONFIG REQUIRED)
-find_package(SDL2_net CONFIG REQUIRED)
 find_package(SDL2_ttf CONFIG REQUIRED)
 find_package(SDL2_image CONFIG REQUIRED)
 
 # Define the source files
-set(SOURCES src/main.c src/client.c include/client.h
-        include/client.h
-        include/utils.h
-        include/utils.h
-        include/game.h
-        include/game.h
-        include/game.h
-        include/globals.h
-        include/globals.h
-        include/map.h
-        src/map.c
-        src/spritesheet.c
-        include/spritesheet.h
-        src/game.c
-        src/game.c
-        src/player.c
-        include/player.h)
-
+set(SOURCES src/main.c src/client.c include/client.h include/client.h include/utils.h include/utils.h)
 
 
 # Create the executable
@@ -42,6 +24,4 @@ target_link_libraries(Client PRIVATE
         SDL2_ttf::SDL2_ttf-static>
         $<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,
         SDL2_image::SDL2_image,
-        SDL2_image::SDL2_image-static>
-        $<IF:$<TARGET_EXISTS:SDL2_net::SDL2_net>,
-        SDL2_net::SDL2_net,SDL2_net::SDL2_net-static>)
+        SDL2_image::SDL2_image-static>)
